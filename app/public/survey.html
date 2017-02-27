@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>survey</title>
+	<meta charset="utf-8">
+	<style type="text/css">
+
+		#container{
+			border: 2px solid #7C93AE;
+			width: 1100px;
+			border-radius: 2em;
+			height: auto;
+			margin: 0 auto;
+
+		}
+
+		h1{
+			border-bottom: 1px solid #4D78B7;
+			margin-left: 20px;
+			width: 900px;
+			font-size: 45px
+		}
+		h3{
+			margin: 20px 20px;
+		}
+
+		h4{
+			margin: 0;
+		}
+
+		button{
+			margin: 20px 20px;
+			background-color: #4D78B7; 
+		}
+
+		select{
+			margin: 0;
+		}
+
+		#survey-form{
+			margin-left: 40px;
+		}
+
+
+		#questions, #user-info{
+			margin-top: 25px;
+		}
+
+	
+	</style>
+</head>
+<body>
+
+<div id="container">
+	<h1> Netflix and Chill Survey</h1>
+
+	<h3>Please rate the following shows from 1 to 5</h3> 
+	<p id="ratingDemo"><em>-------------------1 = gross can't stand it .... 5 = OMG its my favs-------------------</em>
+	</p>
+	<form id="survey-form">
+		<div id="user-info">
+			<label> Your Name</label>
+			<input type="text" name="survey" id="name">
+			<br>
+			<label>Link to Photo</label>
+			<input type="text" name="survey" id="photo">
+		</div>
+		<div id="questions">
+			<h4>Show 1 : Game of Thrones</h4>
+			<input type="text" name="survey" id="q1" placeholder="1-5">
+			<!-- <select>
+			    <option value="" disabled="disabled" selected="selected" id="q1">Please select an option</option>
+			    <option value="1">1</option>
+			    <option value="2">2</option>
+			    <option value="3">3</option>
+			    <option value="4">4</option>
+			    <option value="5">5</option>
+			</select> -->
+			<br>
+			<br>
+
+			<h4>Show 2 : The Jersey Shore</h4>
+			<input type="text" name="survey" id="q2" placeholder="1-5">
+			<br>
+			<br>
+
+			<h4>Show 3 : Stranger Things</h4>
+			<input type="text" name="survey" id="q2" placeholder="1-5">
+			<br>
+			<br>
+
+
+		</div>
+		<input type="button" name="survey" value="submit" id="submit-button">
+	</form>
+</div>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script type="text/javascript">
+
+
+
+	$("#submit-button").on("click", function(event){
+		event.preventDefault();
+		var answers = [];
+		var qOne = $("#q1").val().trim()
+		var qTwo = $("#q1").val().trim()
+		var qThree = $("#q1").val().trim()
+
+		answers.push(qOne, qTwo, qThree);
+		// console.log(answers);
+		
+		var formData = {
+			name: $("#name").val().trim(),
+			photo: $("#photo").val().trim(),
+			answers: answers
+		};
+
+		$.post("/create", formData)
+		.done(function(data){
+			alert("adding friend");
+			window.location= "/survey";
+		});
+	});
+</script>
+</body>
+</html>
+
+
