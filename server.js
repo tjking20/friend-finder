@@ -14,10 +14,17 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json"}));
 
-var htmlRoutes = require("./app/routing/html-routes.js")
-// var apiRoutes = require(".app/routing/api-routes.js")
+var apiRoutes = require("./app/routing/api-routes.js");
+var htmlRoutes = require("./app/routing/html-routes.js");
+
+// var friends = require("./app/data/friends.js");
+// app.get('/api', function(req, res) {
+    // res.json(friends);
+
+// });
+app.use(apiRoutes);
 app.use(htmlRoutes);
-// app.use(apiRoutes);
+
 
 
 //Listener

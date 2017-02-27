@@ -5,8 +5,6 @@ var path = require("path");
 
 //import data 
 var friends = require("../data/friends.js");
-//import friend algorithm
-// var myNetflixBro = require("../data/netflixbro.js");
 
 router.get('/', function(req, res) {
 	res.sendFile(path.join(__dirname, "../public/home.html"));
@@ -54,6 +52,7 @@ router.post('/create', function(req, res) {
 	// myNetflixBro();
 	friends.push(newFriend);
 	console.log(friends);
+	res.redirect("/survey");
 });
 
 module.exports = router;

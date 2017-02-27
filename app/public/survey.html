@@ -3,22 +3,26 @@
 <head>
 	<title>survey</title>
 	<meta charset="utf-8">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<style type="text/css">
 
+		body{
+			color: white;
+			
+		}
 		#container{
 			border: 2px solid #7C93AE;
-			width: 1100px;
+			width: 700px;
 			border-radius: 2em;
 			height: auto;
 			margin: 0 auto;
-
+			background-color: #979797;
 		}
 
 		h1{
 			border-bottom: 1px solid #4D78B7;
-			margin-left: 20px;
-			width: 900px;
-			font-size: 45px
+			font-size: 45px;
+			background-color: #8A010E;
 		}
 		h3{
 			margin: 20px 20px;
@@ -29,12 +33,12 @@
 		}
 
 		button{
-			margin: 20px 20px;
+			margin: 20px 40px;
 			background-color: #4D78B7; 
 		}
 
-		select{
-			margin: 0;
+		input{
+			color: black;
 		}
 
 		#survey-form{
@@ -45,8 +49,6 @@
 		#questions, #user-info{
 			margin-top: 25px;
 		}
-
-	
 	</style>
 </head>
 <body>
@@ -68,14 +70,6 @@
 		<div id="questions">
 			<h4>Show 1 : Game of Thrones</h4>
 			<input type="text" name="survey" id="q1" placeholder="1-5">
-			<!-- <select>
-			    <option value="" disabled="disabled" selected="selected" id="q1">Please select an option</option>
-			    <option value="1">1</option>
-			    <option value="2">2</option>
-			    <option value="3">3</option>
-			    <option value="4">4</option>
-			    <option value="5">5</option>
-			</select> -->
 			<br>
 			<br>
 
@@ -85,14 +79,19 @@
 			<br>
 
 			<h4>Show 3 : Stranger Things</h4>
-			<input type="text" name="survey" id="q2" placeholder="1-5">
+			<input type="text" name="survey" id="q3" placeholder="1-5">
 			<br>
 			<br>
 
 
 		</div>
-		<input type="button" name="survey" value="submit" id="submit-button">
+		<input type="button" class="btn btn-primary" name="survey" value="submit" id="submit-button">
 	</form>
+	<a href="/">
+		<button class="btn btn-primary">
+			<span class="glyphicon glyphicon-home"></span>  Home
+		</button>
+	</a>
 </div>
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script type="text/javascript">
@@ -102,18 +101,19 @@
 	$("#submit-button").on("click", function(event){
 		event.preventDefault();
 		var answers = [];
-		var qOne = $("#q1").val().trim()
-		var qTwo = $("#q1").val().trim()
-		var qThree = $("#q1").val().trim()
+		var qOne = parseInt($("#q1").val());
+		var qTwo = parseInt($("#q2").val());
+		var qThree = parseInt($("#q3").val());
 
-		answers.push(qOne, qTwo, qThree);
-		// console.log(answers);
+		answers.push(qOne,qTwo, qThree);
+		// console.log(answers)
 		
 		var formData = {
 			name: $("#name").val().trim(),
 			photo: $("#photo").val().trim(),
 			answers: answers
 		};
+		console.log(formData)
 
 		$.post("/create", formData)
 		.done(function(data){
